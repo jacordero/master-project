@@ -7,11 +7,11 @@ import time
 import keras
 import numpy as np
 
-import deepmirna_utils as utils
-import vgg_model_generator as model_generator
-from data_loader import DataLoaderAllmirbase
+import utils.deepmirna_utils as deep_utils
+import model_generators.initial_vgg_model_generator as model_generator
+from utils.data_loader import DataLoaderAllmirbase
 
-EPOCHS = 2
+EPOCHS = 100
 BATCH_SIZE = 128
 SAVE_MODEL = True
 
@@ -30,7 +30,7 @@ def train(model, model_name):
 
     # save model
     if SAVE_MODEL:
-        utils.create_directory("../models")
+        deep_utils.create_directory("../models")
         model_filename = "../models/allmirbase_" + model_name + ".h5" 
         model.save(model_filename)
 
@@ -62,9 +62,14 @@ if __name__ == '__main__':
     scores = train(model, model_name)
     print("Results: {}, allmirbase, {:.4f}".format(model_name, scores[1]))
 
-    model, model_name = model_generator.build_model_3modules_cascade()
+    model, model_name = model_generator.build_model_3modules_cascade532()
     scores = train(model, model_name)
     print("Results: {}, allmirbase, {:.4f}".format(model_name, scores[1]))
+
+    model, model_name = model_generator.build_model_3modules_cascade753()
+    scores = train(model, model_name)
+    print("Results: {}, allmirbase, {:.4f}".format(model_name, scores[1]))
+
     
     end = time.time()
     elapsed_time = (end - start) / 60

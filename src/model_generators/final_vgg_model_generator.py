@@ -1,7 +1,6 @@
+#!/usr/bin/env python
+
 from __future__ import print_function
-import os
-import sys
-sys.path.append(os.getcwd())
 
 import keras
 import numpy as np
@@ -15,15 +14,13 @@ BATCH_SIZE = 128
 NUM_CLASSES = 2
 IMG_ROWS, IMG_COLUMNS = 25, 100
 
-def build_model_3modules_2x2():
+def build_model_one_module_3x3():
     input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
 
     block1_units = 48
-    block2_units = 60
-    block3_units = 72
+    kernel_shape = (3, 3)
     dense_units = 256
-    kernel_shape = (2, 2)
-    
+        
     model = Sequential()
     model.add(Conv2D(block1_units, kernel_size=kernel_shape,
                      activation='relu', input_shape=input_shape_img,
@@ -32,18 +29,7 @@ def build_model_3modules_2x2():
                      activation='relu', padding='same'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
-    model.add(Conv2D(block2_units, kernel_size=kernel_shape,
-                     activation='relu', padding='same'))
-    model.add(Conv2D(block2_units, kernel_size=kernel_shape,
-                     activation='relu', padding='same'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
-    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
-                     activation='relu', padding='same'))
-    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
-                     activation='relu', padding='same'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
+
     model.add(Flatten())
     model.add(Dense(dense_units, activation='relu'))
     model.add(Dropout(0.5))
@@ -54,16 +40,15 @@ def build_model_3modules_2x2():
                   optimizer=keras.optimizers.Adam(),
                   metrics=['accuracy'])
 
-    model_name = "vgg_3modules_2x2"
+    model_name = "vgg_one_module_3x3"
     return (model, model_name)
 
 
-def build_model_3modules_3x3():
+def build_model_two_modules_3x3():
     input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
 
     block1_units = 48
     block2_units = 60
-    block3_units = 72
     dense_units = 256
     kernel_shape = (3, 3)
     
@@ -81,12 +66,6 @@ def build_model_3modules_3x3():
                      activation='relu', padding='same'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
-    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
-                     activation='relu', padding='same'))
-    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
-                     activation='relu', padding='same'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
     model.add(Flatten())
     model.add(Dense(dense_units, activation='relu'))
     model.add(Dropout(0.5))
@@ -97,10 +76,10 @@ def build_model_3modules_3x3():
                   optimizer=keras.optimizers.Adam(),
                   metrics=['accuracy'])
 
-    model_name = "vgg_3modules_3x3"
+    model_name = "vgg_two_modules_3x3"
     return (model, model_name)
 
-def build_model_3modules_5x5():
+def build_model_three_modules_3x3():
     input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
 
     block1_units = 48
@@ -139,38 +118,43 @@ def build_model_3modules_5x5():
                   optimizer=keras.optimizers.Adam(),
                   metrics=['accuracy'])
 
-    model_name = "vgg_3modules_5x5"
+    model_name = "vgg_three_modules_3x3"
     return (model, model_name)
 
 
-def build_model_3modules_cascade():
+def build_model_four_modules_3x3():
     input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
 
     block1_units = 48
     block2_units = 60
     block3_units = 72
+    block4_units = 84
     dense_units = 256
-    block1_kernel_shape = (5, 5)
-    block2_kernel_shape = (3, 3)
-    block3_kernel_shape = (2, 2)
+    kernel_shape = (3, 3)
     
     model = Sequential()
-    model.add(Conv2D(block1_units, kernel_size=block1_kernel_shape,
+    model.add(Conv2D(block1_units, kernel_size=kernel_shape,
                      activation='relu', input_shape=input_shape_img,
                      name='input_layer'))
-    model.add(Conv2D(block1_units, kernel_size=block1_kernel_shape,
+    model.add(Conv2D(block1_units, kernel_size=kernel_shape,
                      activation='relu', padding='same'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
-    model.add(Conv2D(block2_units, kernel_size=block2_kernel_shape,
+    model.add(Conv2D(block2_units, kernel_size=kernel_shape,
                      activation='relu', padding='same'))
-    model.add(Conv2D(block2_units, kernel_size=block2_kernel_shape,
+    model.add(Conv2D(block2_units, kernel_size=kernel_shape,
                      activation='relu', padding='same'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
-    model.add(Conv2D(block3_units, kernel_size=block3_kernel_shape,
+    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
                      activation='relu', padding='same'))
-    model.add(Conv2D(block3_units, kernel_size=block3_kernel_shape,
+    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
+                     activation='relu', padding='same'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
+                     activation='relu', padding='same'))
+    model.add(Conv2D(block3_units, kernel_size=kernel_shape,
                      activation='relu', padding='same'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
@@ -184,5 +168,5 @@ def build_model_3modules_cascade():
                   optimizer=keras.optimizers.Adam(),
                   metrics=['accuracy'])
 
-    model_name = "vgg_3modules_cascade"
+    model_name = "vgg_four_modules_3x3"
     return (model, model_name)
