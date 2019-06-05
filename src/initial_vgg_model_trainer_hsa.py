@@ -1,4 +1,4 @@
-#!/usr/bin/anaconda3/bin/python3
+#!/usr/bin/env python
 
 from __future__ import print_function
 from datetime import date
@@ -7,9 +7,9 @@ import time
 import keras
 import numpy as np
 
-import deepmirna_utils as utils
-import vgg_model_generator as model_generator
-from data_loader import DataLoaderHsa
+import utils.deepmirna_utils as deep_utils
+import model_generators.vgg_model_generator as model_generator
+from utils.data_loader import DataLoaderHsa
 
 PRETRAIN_EPOCHS = 40
 TRAIN_EPOCHS = 100
@@ -26,7 +26,7 @@ def train(model, model_name):
     model.fit(pretrain_data, pretrain_labels,
               batch_size=BATCH_SIZE, epochs=PRETRAIN_EPOCHS)
 
-    utils.create_directory("../models")
+    deep_utils.create_directory("../models")
     model_filename = "../models/hsa_pretrain_" + model_name + ".h5" 
     model.save(model_filename)
     
@@ -39,7 +39,7 @@ def train(model, model_name):
               batch_size=BATCH_SIZE, epochs=TRAIN_EPOCHS)
 
     if SAVE_MODEL:
-        utils.create_directory("../models")
+        deep_utils.create_directory("../models")
         model_filename = "../models/hsa_" + model_name + ".h5" 
         model.save(model_filename)
 

@@ -1,9 +1,7 @@
-#!/usr/bin/anaconda3/bin/python3
+#!/usr/bin/env python
 
 from __future__ import print_function
-import sys
-import os
-sys.path.append(os.getcwd())
+
 import keras
 from keras.layers import Dense, Conv2D, BatchNormalization, Activation
 from keras.layers import GlobalAveragePooling2D, Input, Flatten
@@ -13,7 +11,7 @@ from keras.models import Model
 from keras.optimizers import Adam
 
 import numpy as np
-import deepmirna_utils as utils
+import utils.deepmirna_utils as deep_utils
 
 NUM_CLASSES = 2
 IMG_ROWS, IMG_COLUMNS = 25, 100
@@ -34,7 +32,7 @@ def create_name(prefix, num_filters):
 
 
 def build_model_one_module(num_filters):
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     #num_filters = 32
     
     inputs = Input(shape=input_shape_img)
@@ -55,7 +53,7 @@ def build_model_one_module(num_filters):
 
 
 def build_model_two_modules(num_filters):
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     #num_filters = 32
     
     inputs = Input(shape=input_shape_img)
@@ -80,7 +78,7 @@ def build_model_two_modules(num_filters):
 
 
 def build_model_three_modules(num_filters):
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     #num_filters = 32
     
     inputs = Input(shape=input_shape_img)
@@ -107,11 +105,8 @@ def build_model_three_modules(num_filters):
     return (model, model_name)
 
 
-
-
-
 def build_model_four_modules(num_filters):
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     #num_filters = 32
     
     inputs = Input(shape=input_shape_img)
@@ -143,7 +138,7 @@ def build_model_four_modules(num_filters):
 
 
 def build_final_model():
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     num_filters = 32
     
     inputs = Input(shape=input_shape_img)

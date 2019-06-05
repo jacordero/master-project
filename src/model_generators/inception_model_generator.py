@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from __future__ import print_function
 
 import keras
@@ -7,7 +9,7 @@ from keras.models import Model
 from keras import backend as K
 
 import numpy as np
-import deepmirna_utils as utils
+import utils.deepmirna_utils as deep_utils
 
 NUM_CLASSES = 2
 IMG_ROWS, IMG_COLUMNS = 25, 100
@@ -21,10 +23,10 @@ def inception_module(inputs, n_filters):
     towerOne = Conv2D(n_filters, (1,1), activation='relu', padding='same')(towerOne)
 
     towerTwo = Conv2D(n_filters, (1,1), activation='relu', padding='same')(inputs)
-    towerTwo = Conv2D(n_filters, (3,3), activation='relu', padding='same')(towerTwo)
+    towerTwo = Conv2D(n_filters, (2,2), activation='relu', padding='same')(towerTwo)
 
     towerThree = Conv2D(n_filters, (1,1), activation='relu', padding='same')(inputs)
-    towerThree = Conv2D(n_filters, (5,5), activation='relu', padding='same')(towerThree)
+    towerThree = Conv2D(n_filters, (3,3), activation='relu', padding='same')(towerThree)
 
     towerFour = Conv2D(n_filters, (1, 1), activation='relu', padding='same')(inputs)
     
@@ -33,7 +35,7 @@ def inception_module(inputs, n_filters):
 
 
 def build_model_one_module():
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     inputs = Input(input_shape_img)
 
     x = Conv2D(64, (3,3), activation='relu', padding='same')(inputs)
@@ -55,7 +57,7 @@ def build_model_one_module():
 
 
 def build_model_two_modules():
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     inputs = Input(input_shape_img)
 
     x = Conv2D(64, (3,3), activation='relu', padding='same')(inputs)
@@ -78,7 +80,7 @@ def build_model_two_modules():
 
 
 def build_model_three_modules():
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     inputs = Input(input_shape_img)
 
     x = Conv2D(64, (3,3), activation='relu', padding='same')(inputs)
@@ -101,7 +103,7 @@ def build_model_three_modules():
 
 
 def build_model_four_modules():
-    input_shape_img = utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
+    input_shape_img = deep_utils.get_rgb_input_shape(IMG_ROWS, IMG_COLUMNS)
     inputs = Input(input_shape_img)
 
     x = Conv2D(64, (3,3), activation='relu', padding='same')(inputs)
