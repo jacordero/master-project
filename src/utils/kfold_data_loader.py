@@ -7,7 +7,7 @@ import numpy as np
 import utils.deepmirna_utils as deep_utils
 
 NUM_CLASSES = 2
-data_dir = "../../datasets/"
+data_dir = "../../datasets/kfold_indices/"
 
 class DataLoaderHsa:
 
