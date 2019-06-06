@@ -3,39 +3,43 @@
 import os
 import sys
 import numpy as np
+import pathlib
+
+from os.path import normpath, join, abspath, dirname
 
 import utils.deepmirna_utils as deep_utils
 
 NUM_CLASSES = 2
-data_dir = "../../datasets/kfold_indices/"
+data_dir = normpath(join(abspath(dirname(__file__)), "../../datasets/")) + "/"
+indices_dir = data_dir + "kfold_indices/"
 
 class DataLoaderHsa:
 
     def __init__(self):
         self.train_id_filenames = [
-            data_dir + "kfold_hsa_train_ids_0.npz",
-            data_dir + "kfold_hsa_train_ids_1.npz",
-            data_dir + "kfold_hsa_train_ids_2.npz",
-            data_dir + "kfold_hsa_train_ids_3.npz",
-            data_dir + "kfold_hsa_train_ids_4.npz",
-            data_dir + "kfold_hsa_train_ids_5.npz",
-            data_dir + "kfold_hsa_train_ids_6.npz",
-            data_dir + "kfold_hsa_train_ids_7.npz",
-            data_dir + "kfold_hsa_train_ids_8.npz",
-            data_dir + "kfold_hsa_train_ids_9.npz"
+            indices_dir + "kfold_hsa_train_ids_0.npz",
+            indices_dir + "kfold_hsa_train_ids_1.npz",
+            indices_dir + "kfold_hsa_train_ids_2.npz",
+            indices_dir + "kfold_hsa_train_ids_3.npz",
+            indices_dir + "kfold_hsa_train_ids_4.npz",
+            indices_dir + "kfold_hsa_train_ids_5.npz",
+            indices_dir + "kfold_hsa_train_ids_6.npz",
+            indices_dir + "kfold_hsa_train_ids_7.npz",
+            indices_dir + "kfold_hsa_train_ids_8.npz",
+            indices_dir + "kfold_hsa_train_ids_9.npz"
         ]
 
         self.test_id_filenames = [
-            data_dir + "kfold_hsa_test_ids_0.npz",
-            data_dir + "kfold_hsa_test_ids_1.npz",
-            data_dir + "kfold_hsa_test_ids_2.npz",
-            data_dir + "kfold_hsa_test_ids_3.npz",
-            data_dir + "kfold_hsa_test_ids_4.npz",
-            data_dir + "kfold_hsa_test_ids_5.npz",
-            data_dir + "kfold_hsa_test_ids_6.npz",
-            data_dir + "kfold_hsa_test_ids_7.npz",
-            data_dir + "kfold_hsa_test_ids_8.npz",
-            data_dir + "kfold_hsa_test_ids_9.npz"
+            indices_dir + "kfold_hsa_test_ids_0.npz",
+            indices_dir + "kfold_hsa_test_ids_1.npz",
+            indices_dir + "kfold_hsa_test_ids_2.npz",
+            indices_dir + "kfold_hsa_test_ids_3.npz",
+            indices_dir + "kfold_hsa_test_ids_4.npz",
+            indices_dir + "kfold_hsa_test_ids_5.npz",
+            indices_dir + "kfold_hsa_test_ids_6.npz",
+            indices_dir + "kfold_hsa_test_ids_7.npz",
+            indices_dir + "kfold_hsa_test_ids_8.npz",
+            indices_dir + "kfold_hsa_test_ids_9.npz"
         ]
         
         self.data_filename = data_dir + "hsa_data.npz"
@@ -80,46 +84,44 @@ class DataLoaderHsa:
         
         return (data, labels)
 
-
     
         
 class DataLoaderAllmirbase:
 
     def __init__(self):
         self.train_id_filenames = [
-            data_dir + "kfold_allmirbase_train_ids_0.npz",
-            data_dir + "kfold_allmirbase_train_ids_1.npz",
-            data_dir + "kfold_allmirbase_train_ids_2.npz",
-            data_dir + "kfold_allmirbase_train_ids_3.npz",
-            data_dir + "kfold_allmirbase_train_ids_4.npz",
-            data_dir + "kfold_allmirbase_train_ids_5.npz",
-            data_dir + "kfold_allmirbase_train_ids_6.npz",
-            data_dir + "kfold_allmirbase_train_ids_7.npz",
-            data_dir + "kfold_allmirbase_train_ids_8.npz",
-            data_dir + "kfold_allmirbase_train_ids_9.npz"
+            indices_dir + "kfold_allmirbase_train_ids_0.npz",
+            indices_dir + "kfold_allmirbase_train_ids_1.npz",
+            indices_dir + "kfold_allmirbase_train_ids_2.npz",
+            indices_dir + "kfold_allmirbase_train_ids_3.npz",
+            indices_dir + "kfold_allmirbase_train_ids_4.npz",
+            indices_dir + "kfold_allmirbase_train_ids_5.npz",
+            indices_dir + "kfold_allmirbase_train_ids_6.npz",
+            indices_dir + "kfold_allmirbase_train_ids_7.npz",
+            indices_dir + "kfold_allmirbase_train_ids_8.npz",
+            indices_dir + "kfold_allmirbase_train_ids_9.npz"
         ]
 
         self.test_id_filenames = [
-            data_dir + "kfold_allmirbase_test_ids_0.npz",
-            data_dir + "kfold_allmirbase_test_ids_1.npz",
-            data_dir + "kfold_allmirbase_test_ids_2.npz",
-            data_dir + "kfold_allmirbase_test_ids_3.npz",
-            data_dir + "kfold_allmirbase_test_ids_4.npz",
-            data_dir + "kfold_allmirbase_test_ids_5.npz",
-            data_dir + "kfold_allmirbase_test_ids_6.npz",
-            data_dir + "kfold_allmirbase_test_ids_7.npz",
-            data_dir + "kfold_allmirbase_test_ids_8.npz",
-            data_dir + "kfold_allmirbase_test_ids_9.npz"
+            indices_dir + "kfold_allmirbase_test_ids_0.npz",
+            indices_dir + "kfold_allmirbase_test_ids_1.npz",
+            indices_dir + "kfold_allmirbase_test_ids_2.npz",
+            indices_dir + "kfold_allmirbase_test_ids_3.npz",
+            indices_dir + "kfold_allmirbase_test_ids_4.npz",
+            indices_dir + "kfold_allmirbase_test_ids_5.npz",
+            indices_dir + "kfold_allmirbase_test_ids_6.npz",
+            indices_dir + "kfold_allmirbase_test_ids_7.npz",
+            indices_dir + "kfold_allmirbase_test_ids_8.npz",
+            indices_dir + "kfold_allmirbase_test_ids_9.npz"
         ]
         
         self.data_filename = data_dir + "complete_allmirbase_data.npz"
         self.labels_filename = data_dir + "complete_allmirbase_labels.npz"
-
         self.number_of_elements = self.compute_number_of_elements()
-
     
         
     def compute_number_of_elements(self):
+        
         labels = deep_utils.load_labels(self.labels_filename, NUM_CLASSES)
         return labels.shape[0]
 

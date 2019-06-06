@@ -85,16 +85,6 @@ if __name__ == '__main__':
     acc_values_filename = "../kfold_acc_values/kfold_vgg_1M_128FCU_allmirbase.npz"
     np.savez_compressed(acc_values_filename, acc_values)
     
-    # vgg_3M_64FCU
-    acc_values = train_kfolds(data_loader, model_generator, 'vgg_3M_64FCU')
-    acc_values_filename = "../kfold_acc_values/kfold_vgg_3M_64FCU_allmirbase.npz"
-    np.savez_compressed(acc_values_filename, acc_values)
-
-    # vgg_4M_128FCU
-    acc_values = train_kfolds(data_loader, model_generator, 'vgg_4M_128FCU')
-    acc_values_filename = "../kfold_acc_values/kfold_vgg_4M_128FCU_allmirbase.npz"
-    np.savez_compressed(acc_values_filename, acc_values)
-    
     end = time.time()
     elapsed_time = (end - start) / 60
     print("\nTask finished in {} minutes!!".format(elapsed_time))
