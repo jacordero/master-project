@@ -11,7 +11,7 @@ import utils.deepmirna_utils as deep_utils
 import model_generators.initial_vgg_model_generator as model_generator
 from utils.data_loader import DataLoaderAllmirbase
 
-EPOCHS = 1
+EPOCHS = 100
 BATCH_SIZE = 128
 SAVE_MODEL = True
 

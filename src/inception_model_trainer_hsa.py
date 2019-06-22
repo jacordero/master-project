@@ -11,8 +11,8 @@ import utils.deepmirna_utils as deep_utils
 import model_generators.inception_model_generator as model_generator
 from utils.data_loader import DataLoaderHsa
 
-PRETRAIN_EPOCHS = 1
-TRAIN_EPOCHS = 2
+PRETRAIN_EPOCHS = 40
+TRAIN_EPOCHS = 100
 BATCH_SIZE = 128
 SAVE_MODEL = True
 

@@ -12,13 +12,11 @@ import model_generators.resnet_model_generator as model_generator
 import utils.deepmirna_utils as deep_utils
 
 # Training parameters
-PRETRAIN_EPOCHS = 1
-TRAIN_EPOCHS = 2
+PRETRAIN_EPOCHS = 40
+TRAIN_EPOCHS = 100
 BATCH_SIZE = 128
 SAVE_MODEL = True
 
-
-#TODO: review this
 def train(model, pretrain_datasets, train_datasets,
           test_datasets, model_name):
 
