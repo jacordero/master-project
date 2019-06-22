@@ -10,13 +10,13 @@ blood vessels. In humans, miRNAs can be present in fluids and can be associated 
 Methods for pre-miRNA detection are used in tandem with miRNA detection procedures to identify novel miRNAs. In this work, deep convolutional neural networks are used to identify pre-miRNAs from candidate nucleotide sequences.
 
 The proposed pre-miRNA detection framework is shown in the figure below. In summary, a hairpin encoding algorithm encodes nucleotide sequences as RGB images revealing potential spatial patterns. Such images are then classified by CNN models as valid pre-miRNAs (or not).
-
-
-The figure below depicts the way nucleotide sequences are encoded as RGB images.
 ![alt text](info/premiRNADetectionProcedure.png "Pre-miRNA detection framework")
 
-More details of the encoding procedure can be found in the thesis document.
+The figure below depicts the way nucleotide sequences are encoded as RGB images.
 ![alt text](info/Encoding-cel-mir-83-procedure.png "Hairpin encoding algorithm")
+
+
+More details of the encoding procedure can be found in the thesis document.
 
 
 ## Datasets description
