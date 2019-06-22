@@ -11,7 +11,6 @@ import utils.deepmirna_utils as deep_utils
 import model_generators.fcn_model_generator as model_generator
 from utils.data_loader import DataLoaderAllmirbase
 
-
 EPOCHS = 100
 BATCH_SIZE = 128
 SAVE_MODEL = True
